@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import Experience from "../Experience.js";
 import GSAP from "gsap";
-// import { RectAreaLightHelper } from "three/examples/jsm/helpers/RectAreaLightHelper.js";
+import { RectAreaLightHelper } from "three/examples/jsm/helpers/RectAreaLightHelper.js";
 
 export default class Room {
     constructor() {
@@ -84,28 +84,28 @@ export default class Room {
     //             child.rotation.y = Math.PI / 4;
     //         }
 
-    //         this.roomChildren[child.name.toLowerCase()] = child;
+            // this.roomChildren[child.name.toLowerCase()] = child;
         });
 
-    //     const width = 0.5;
-    //     const height = 0.7;
-    //     const intensity = 1;
-    //     const rectLight = new THREE.RectAreaLight(
-    //         0xffffff,
-    //         intensity,
-    //         width,
-    //         height
-    //     );
-    //     rectLight.position.set(7.68244, 7, 0.5);
-    //     rectLight.rotation.x = -Math.PI / 2;
-    //     rectLight.rotation.z = Math.PI / 4;
-    //     this.actualRoom.add(rectLight);
+        const width = 0.5;
+        const height = 0.7;
+        const intensity = 1;
+        const rectLight = new THREE.RectAreaLight(
+            0xffffff,
+            intensity,
+            width,
+            height
+        );
+        rectLight.position.set(7.68244, 7, 0.5);
+        rectLight.rotation.x = -Math.PI / 2;
+        rectLight.rotation.z = Math.PI / 4;
+        this.actualRoom.add(rectLight);
 
-    //     this.roomChildren["rectLight"] = rectLight;
+        // this.roomChildren["rectLight"] = rectLight;
 
-    //     // const rectLightHelper = new RectAreaLightHelper(rectLight);
-    //     // rectLight.add(rectLightHelper);
-    //     // console.log(this.room);
+        // const rectLightHelper = new RectAreaLightHelper(rectLight);
+        // rectLight.add(rectLightHelper);
+        // console.log(this.room);
 
         this.scene.add(this.actualRoom);
         this.actualRoom.scale.set(0.11, 0.11, 0.11);
