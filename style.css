@@ -11,11 +11,8 @@ html, body{
 :root{
   /* Light Theme Variables */
   --color-text-light: #333332;
-  --color-text: #333332;
   --color-background-light: #FAF4E5;
-  --color-background: #FAF4E5;
   --color-pink-light: #e5a1aa;
-  --color-pink: #e5a1aa;
   --color-green-light: #7AD0AC;
   --color-blue-light: #8395CD;
 
@@ -23,7 +20,21 @@ html, body{
   --color-text-dark: #FAF4E5;
   --color-background-dark: #8395CD;
 }
+.light-theme{
+  --color-text: var(--color-text-light);
+  --color-background: var(--color-background-light);
+  --color-pink: var(--color-pink-light);
+  --color-green: var(--color-green-light);
+  --color-blue: var(--color-blue-light);
+}
 
+.dark-theme{
+  --color-text: var(--color-text-dark);
+  --color-background: var(--color-background-dark);
+  --color-pink: var(--color-text-dark);
+  --color-green: var(--color-text-dark);
+  --color-blue: var(--color-text-dark);
+}
 
 /* Experience --------------------------------------------- */
 
