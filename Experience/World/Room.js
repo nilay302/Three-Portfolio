@@ -7,13 +7,11 @@ export default class Room {
     constructor() {
         this.experience = new Experience();
         this.scene = this.experience.scene;
-        
         this.resources = this.experience.resources;
         this.time = this.experience.time;
         this.room = this.resources.items.room;
         this.actualRoom = this.room.scene;
-        // console.log(this.actualRoom);
-        // this.roomChildren = {};
+        this.roomChildren = {};
 
         this.lerp = {
             current: 0,
@@ -33,24 +31,24 @@ export default class Room {
 
             if (child instanceof THREE.Group) {
                 child.children.forEach((groupchild) => {
-    //                 console.log(groupchild.material);
+                    // console.log(groupchild.material);
                     groupchild.castShadow = true;
                     groupchild.receiveShadow = true;
                 });
             }
 
-    //         // console.log(child);
+            // console.log(child);
 
             if (child.name === "Aquarium") {
-                console.log(child);
+                // console.log(child);
                 child.children[0].material = new THREE.MeshPhysicalMaterial();
                 child.children[0].material.roughness = 0;
                 child.children[0].material.color.set(0x549dd2);
                 child.children[0].material.ior = 3;
                 child.children[0].material.transmission = 1;
                 child.children[0].material.opacity = 1;
-    //             child.children[0].material.depthWrite = false;
-    //             child.children[0].material.depthTest = false;
+                child.children[0].material.depthWrite = false;
+                child.children[0].material.depthTest = false;
             }
 
             if (child.name === "Computer") {
@@ -64,27 +62,27 @@ export default class Room {
                 child.position.z = 8.83572;
             }
 
-            if (
-                child.name === "Mailbox" ||
-                child.name === "Lamp" ||
-                child.name === "FloorFirst" ||
-                child.name === "FloorSecond" ||
-                child.name === "FloorThird" ||
-                child.name === "Dirt" ||
-                child.name === "Flower1" ||
-                child.name === "Flower2"
-            ) {
-                child.scale.set(0, 0, 0);
+            // if (
+            //     child.name === "Mailbox" ||
+            //     child.name === "Lamp" ||
+            //     child.name === "FloorFirst" ||
+            //     child.name === "FloorSecond" ||
+            //     child.name === "FloorThird" ||
+            //     child.name === "Dirt" ||
+            //     child.name === "Flower1" ||
+            //     child.name === "Flower2"
+            // ) {
+            //     child.scale.set(0, 0, 0);
+            // }
+
+            child.scale.set(0, 0, 0);
+            if (child.name === "Cube") {
+                // child.scale.set(1, 1, 1);
+                child.position.set(0, -1, 0);
+                child.rotation.y = Math.PI / 4;
             }
 
-    //         child.scale.set(0, 0, 0);
-    //         if (child.name === "Cube") {
-    //             // child.scale.set(1, 1, 1);
-    //             child.position.set(0, -1, 0);
-    //             child.rotation.y = Math.PI / 4;
-    //         }
-
-            // this.roomChildren[child.name.toLowerCase()] = child;
+            this.roomChildren[child.name.toLowerCase()] = child;
         });
 
         const width = 0.5;
@@ -96,12 +94,12 @@ export default class Room {
             width,
             height
         );
-        rectLight.position.set(7.68244, 7, 0.5  );
+        rectLight.position.set(7.68244, 7, 0.5);
         rectLight.rotation.x = -Math.PI / 2;
         rectLight.rotation.z = Math.PI / 4;
         this.actualRoom.add(rectLight);
 
-        // this.roomChildren["rectLight"] = rectLight;
+        this.roomChildren["rectLight"] = rectLight;
 
         // const rectLightHelper = new RectAreaLightHelper(rectLight);
         // rectLight.add(rectLightHelper);
@@ -125,7 +123,7 @@ export default class Room {
         });
     }
 
-    // resize() {}
+    resize() {}
 
     update() {
         this.lerp.current = GSAP.utils.interpolate(

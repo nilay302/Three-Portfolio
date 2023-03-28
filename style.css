@@ -5,9 +5,15 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 html, body{
   font-family: "Montserrat", sans-serif;
 }
+
+/* body{
+  overflow: hidden;
+} */
+
 h1,
 section,
 p,
@@ -15,6 +21,7 @@ span,
 svg{
   transition: background-color 0.5s, color 0.5s;
 }
+
 :root{
   /* Light Theme Variables */
   --color-text-light: #333332;
@@ -27,6 +34,7 @@ svg{
   --color-text-dark: #FAF4E5;
   --color-background-dark: #8395CD;
 }
+
 .light-theme{
   --color-text: var(--color-text-light);
   --color-background: var(--color-background-light);
@@ -60,23 +68,118 @@ svg{
   display: none;
 }
 
+/* Preloader */
+.preloader{
+  background-color: var(--color-background-light);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  opacity: 1;
+  z-index: 99999999999999999;
+}
+
+.preloader-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.loading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 6px;
+  background-color: var(--color-pink-light);
+  animation: load 1s ease-in-out infinite;
+}
+
+.circle:nth-child(2){
+  animation-delay: 0.1s;
+}
+
+.circle:nth-child(3){
+  animation-delay: 0.2s;
+}
+
+@keyframes load {
+  0% {
+    transform: translateY(0)
+  }
+
+  20% {
+    transform: translateY(-12px)
+  }
+
+  40% {
+    transform: translateY(0)
+  }
+  
+}
+
 /* Page Itself --------------------------------------------- */
 .page{
   z-index:99999;
   width: 100%;
   height: 100vh;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .page-wrapper{
   position: relative;
 }
 
+/* Preloader Stuff */
+.animatedis{
+  display: inline-block;
+  transform: translateY(100%);
+}
+
+.intro-text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--color-text);
+  transform: translate(-50%, -50%);
+}
+
+.arrow-svg-wrapper{
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  opacity: 0;
+  color: var(--color-text);
+  transform: translate(-50%, -50%);
+  animation: bounce 0.5s ease-in alternate infinite;
+}
+
+@keyframes bounce {
+  0%{
+    transform: translateY(0)
+  }
+
+  100%{
+    transform: translateY(8px)
+  }
+}
+
 /* Toggle Bar --------------------------------------------- */
 .toggle-bar{
   position: fixed;
   display: flex;
-  /* opacity: 0; */
+  opacity: 0;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -127,53 +230,6 @@ svg{
   left: 31px;
 }
 
-
-/* Hero section -------------------------------- */
-
-.hero{
-  width: 100vw;
-  height: 100vh;
-}
-
-.hero-wrapper{
-  position: relative;
-  height: 100%;
-  width: 100%;
-  margin: 0 auto;
-  max-width: 1100px;
-}
-
-.hero-main{
-  position: absolute;
-  bottom: 168px;
-  left: 0;
-  color: var(--color-text);
-}
-
-.hero-second{
-  position: absolute;
-  top: calc(50% - 120px);
-  right: 0;
-  color: var(--color-text);
-}
-
-.hero-main-title{
-  font-size: 64px;
-  color: var(--color-text);
-}
-
-.hero-main-description{
-  font-size: 18px;
-  color: var(--color-text);
-}
-
-.hero-second-subheading{
-  font-size: 32px;
-  text-transform: uppercase;
-  color: var(--color-text);
-}
-
-
 /* Section Formatting --------------------------------------------- */
 .section-margin{
   height: 3000px;
@@ -183,10 +239,10 @@ svg{
 .section{
   position: relative;
   width: 50%;
-  padding: 1000px 4%;
+  padding: 500px 4%;
   margin: 0;
   background-color: var(--color-background);
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .left{
@@ -247,17 +303,17 @@ svg{
 }
 
 .section-heading{
-  font-size: 18px;
+  font-size: 28px;
   font-weight: 700;
   line-height: 1.8;
   margin-top: 64px;
   color: var(--color-text);
-} 
+}
 
 .section-text{
   line-height: 2;
   margin-top: 18px;
-  font-size: 16px;
+  font-size: 26px;
   color: var(--color-text);
 }
 
@@ -266,6 +322,7 @@ svg{
   position: relative;
   color: var(--color-pink)
 }
+
 .section-title-text{
   display: block;
   font-size: 40px;
@@ -276,6 +333,7 @@ svg{
   text-transform: uppercase;
   color: var(--color-pink);
 }
+
 .styleOne,
 .styleTwo,
 .styleThree{
@@ -288,6 +346,7 @@ svg{
   transform-origin: left;
   transform: skewY(-25deg);
 }
+
 .styleOne{
   top: 0px;
 }
@@ -301,6 +360,7 @@ svg{
   transform: skewY(25deg);
   background-color: var(--color-pink);
 }
+
 .section-number{
   position: absolute;
   bottom: 15px;
@@ -308,6 +368,53 @@ svg{
   color: var(--color-pink);
   font-size: 24px;
 }
+
+
+/* Hero section -------------------------------- */
+
+.hero{
+  width: 100vw;
+  height: 100vh;
+}
+
+.hero-wrapper{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1100px;
+}
+
+.hero-main{
+  position: absolute;
+  bottom: 168px;
+  left: 0;
+  color: var(--color-text);
+}
+
+.hero-second{
+  position: absolute;
+  top: calc(50% - 120px);
+  right: 0;
+  color: var(--color-text);
+}
+
+.hero-main-title{
+  font-size: 64px;
+  color: var(--color-text);
+}
+
+.hero-main-description{
+  font-size: 18px;
+  color: var(--color-text);
+}
+
+.hero-second-subheading{
+  font-size: 32px;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
 
 /* Other colors override */
 
@@ -334,6 +441,7 @@ svg{
 .green-background{
   background-color: var(--color-green);
 }
+
 
 /* Media Queries */
 
@@ -364,6 +472,7 @@ svg{
     font-size: 18px;
   }
 }
+
 
 /* contact us */
 .form {

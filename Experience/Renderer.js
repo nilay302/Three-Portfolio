@@ -18,7 +18,7 @@ export default class Renderer {
             antialias: true,
         });
 
-        this.renderer.useLegacyLights = true;
+        this.renderer.physicallyCorrectLights = true;
         this.renderer.outputEncoding = THREE.sRGBEncoding;
         this.renderer.toneMapping = THREE.CineonToneMapping;
         this.renderer.toneMappingExposure = 1.75;
@@ -34,7 +34,7 @@ export default class Renderer {
     }
 
     update() {
-        this.renderer.setViewport(0, 0, this.sizes.width, this.sizes.height);
+        // this.renderer.setViewport(0, 0, this.sizes.width, this.sizes.height);
         this.renderer.render(this.scene, this.camera.orthographicCamera);
         // Second Screen
         // this.renderer.setScissorTest(true);

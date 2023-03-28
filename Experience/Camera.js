@@ -1,6 +1,7 @@
 import * as THREE from "three";
-import Experience from "./Experience";
-import {OrbitControls} from "three/examples/jsm/controls/OrbitControls.js"
+import Experience from "./Experience.js";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
 export default class Camera {
     constructor() {
         this.experience = new Experience();
@@ -27,7 +28,6 @@ export default class Camera {
     }
 
     createOrthographicCamera() {
-        
         this.orthographicCamera = new THREE.OrthographicCamera(
             (-this.sizes.aspect * this.sizes.frustrum) / 2,
             (this.sizes.aspect * this.sizes.frustrum) / 2,
@@ -38,8 +38,8 @@ export default class Camera {
         );
 
         // 6.5
-        this.orthographicCamera.position.y = 3.5;
-        this.orthographicCamera.position.z = 5;
+        this.orthographicCamera.position.y = 5.65;
+        this.orthographicCamera.position.z = 10;
         this.orthographicCamera.rotation.x = -Math.PI / 6;
 
         this.scene.add(this.orthographicCamera);
@@ -57,10 +57,10 @@ export default class Camera {
         // this.scene.add(axesHelper);
     }
 
-    setOrbitControls(){
+    setOrbitControls() {
         this.controls = new OrbitControls(this.perspectiveCamera, this.canvas);
         this.controls.enableDamping = true;
-        this.controls.enableZoom = true;
+        this.controls.enableZoom = false;
     }
 
     resize() {
@@ -77,13 +77,14 @@ export default class Camera {
         this.orthographicCamera.bottom = -this.sizes.frustrum / 2;
         this.orthographicCamera.updateProjectionMatrix();
     }
-    update(){
+
+    update() {
+        // console.log(this.perspectiveCamera.position);
         this.controls.update();
 
         // this.helper.matrixWorldNeedsUpdate = true;
         // this.helper.update();
         // this.helper.position.copy(this.orthographicCamera.position);
-        // this.helper.position.copy(this.orthographicCamera.rotation)
-
+        // this.helper.rotation.copy(this.orthographicCamera.rotation);
     }
-};
+}

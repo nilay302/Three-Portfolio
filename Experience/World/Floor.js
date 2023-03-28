@@ -7,7 +7,7 @@ export default class Floor {
         this.scene = this.experience.scene;
 
         this.setFloor();
-        // this.setCircles();
+        this.setCircles();
     }
 
     setFloor() {
